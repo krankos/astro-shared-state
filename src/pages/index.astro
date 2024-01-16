@@ -1,0 +1,46 @@
+---
+import ReactCounter from "../components/react/ReactCounter.jsx";
+import SvelteCounter from "../components/svelte/SvelteCounter.svelte";
+---
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="generator" content={Astro.generator} />
+    <title>Astro</title>
+  </head>
+  <body>
+    <h1>Astro</h1>
+    <ReactCounter client:load />
+    <SvelteCounter client:load />
+
+    <div>
+      <h1>Astro buttons</h1>
+      <button id="increment" class="btn btn-primary">+1</button>
+      <button id="decrement" class="btn btn-primary">-1</button>
+      <button id="reset" class="btn btn-primary">Reset</button>
+    </div>
+  </body>
+</html>
+
+<script type="">
+  import { inc, dec, reset } from "../nanoStore.js";
+
+  const increment = () => {
+    inc();
+  };
+
+  const decrement = () => {
+    dec();
+  };
+
+  const resetCounter = () => {
+    reset();
+  };
+
+  document.getElementById("increment").addEventListener("click", increment);
+  document.getElementById("decrement").addEventListener("click", decrement);
+  document.getElementById("reset").addEventListener("click", resetCounter);
+</script>
